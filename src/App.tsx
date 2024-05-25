@@ -1,5 +1,11 @@
+import JobListings from "./components/JobListings";
+
 function App() {
-  return <div className="bg-black">Hello</div>;
+  return (
+    <main>
+      <JobListings />
+    </main>
+  );
 }
 
 export default App;
