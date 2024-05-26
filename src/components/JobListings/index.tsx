@@ -1,4 +1,4 @@
-import { Reducer, useReducer, useState } from "react";
+import { useReducer } from "react";
 
 import { jobListings as allJobListings } from "../../assets/data";
 
