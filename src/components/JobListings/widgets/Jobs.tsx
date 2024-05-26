@@ -49,14 +49,14 @@ const JobCard: React.FC<JobCardProps> = (props) => {
   const isNew = props.job.featured && props.job.new;
   const { role, languages, tools, level } = props.job;
   return (
-    <div className="w-5/6 min-w-fit flex bg-white shadow-md rounded-md m-auto">
+    <div className="w-full lg:w-5/6 flex bg-white shadow-md rounded-md m-auto">
       {isNew && <div className="w-1 rounded-l-md bg-primary"></div>}
-      <div className="flex items-center justify-between p-8 flex-grow">
-        <div className="flex items-center gap-4">
-          <figure>
+      <div className="flex items-start justify-between gap-4 p-8 flex-grow flex-col md:flex-row md:items-center">
+        <div className="flex items-start gap-4 flex-col md:flex-row md:items-center relative">
+          <figure className="w-12 absolute -translate-y-12 md:w-fit md:relative md:translate-y-0">
             <img src={props.job.logo} alt={`${props.job.company}-logo`} />
           </figure>
-          <div className="font-semibold flex flex-col gap-2">
+          <div className="font-semibold flex flex-col gap-2 mt-4 md:mt-0">
             <header className="flex items-center gap-2">
               <h4 className="text-primary mr-2">{props.job.company}</h4>
               {props.job.new && (
@@ -82,7 +82,8 @@ const JobCard: React.FC<JobCardProps> = (props) => {
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <hr className="border-1 border-grayish-cyan-dark w-full md:hidden" />
+        <div className="flex flex-wrap items-center gap-2">
           <ClickableTag
             onClick={() => props.onFilterAdd(role)}
             content={role}
@@ -114,9 +115,9 @@ const JobCard: React.FC<JobCardProps> = (props) => {
 const Jobs: React.FC<JobsProps> = (props) => {
   return (
     <div
-      className={`flex flex-col gap-4 ${
+      className={`flex flex-col gap-8 p-8 lg:p-0 ${
         props?.filters?.length ? "" : "mt-8"
-      } h-full overflow-y-scroll`}
+      }  overflow-y-auto`}
     >
       {props.jobs.map((job, index) => (
         <JobCard key={index} job={job} onFilterAdd={props.onFilterAdd} />

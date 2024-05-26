@@ -17,7 +17,7 @@ interface JobFiltersProps {
 
 const Filters: React.FC<FiltersProps> = (props) => {
   return (
-    <div className="flex flex-1 items-center gap-2">
+    <div className="flex flex-1 flex-wrap items-center gap-2">
       {(props.filters || [])?.map((filter, index) => {
         return (
           <div key={index} className="flex font-bold">
@@ -36,15 +36,18 @@ const Filters: React.FC<FiltersProps> = (props) => {
     </div>
   );
 };
-
 const JobFilters: React.FC<JobFiltersProps> = (props) => {
+  const screenWidth = screen.width;
   return (
     <header>
-      <figure className="bg-primary">
-        <img src={bgHeaderDesktop} alt="background" />
+      <figure className="bg-primary min-h-32">
+        <img
+          src={screenWidth > 500 ? bgHeaderDesktop : bgHeaderMobile}
+          alt="background"
+        />
       </figure>
       {!!props.filters.length && (
-        <div className="flex items-center justify-center w-5/6 h-16 -translate-y-1/2 bg-white m-auto rounded-md shadow-md py-4 px-8">
+        <div className="flex gap-4 items-center justify-center w-5/6 -translate-y-1/2 bg-white m-auto rounded-md shadow-md py-4 px-8">
           <Filters
             filters={props.filters}
             onFilterDelete={props.onFilterDelete}

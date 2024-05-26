@@ -56,12 +56,17 @@ const JobListings = () => {
       />
       <Jobs
         jobs={filteredJobs}
-        onFilterAdd={(filterToAdd: string) =>
+        onFilterAdd={(filterToAdd: string) => {
+          if (filters.includes(filterToAdd)) {
+            alert("This filter is already selected");
+            return;
+          }
+
           dispatch({
             type: JOB_FILTER_ACTION_TYPES.addFilter,
             payload: filterToAdd,
-          })
-        }
+          });
+        }}
         filters={filters}
       />
     </div>
